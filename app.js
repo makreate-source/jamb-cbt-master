@@ -172,7 +172,7 @@ document.addEventListener('keydown', (e) => {
 document.getElementById('close-upgrade').onclick = () => document.getElementById('upgrade-modal').classList.add('hidden');
 document.getElementById('whatsapp-btn').onclick = () => {
     const msg = `Hello Admin, I just paid ₦1,000 via OPay. My account email is ${currentUser.email}.`;
-    window.open(`https://wa.me/2348000000000?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/2347017860781?text=${encodeURIComponent(msg)}`, '_blank');
 };
 
 let tapCount = 0;
