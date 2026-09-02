@@ -1,0 +1,80 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAMB CBT Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- AUTHENTICATION SCREEN -->
+    <div id="auth-screen">
+        <div class="auth-box">
+            <h2>Welcome to JAMB CBT</h2>
+            <p>Login to continue</p>
+            <input type="email" id="email-input" placeholder="Email Address">
+            <input type="password" id="password-input" placeholder="Password">
+            <button id="login-btn">Log In / Sign Up</button>
+            <div class="divider">OR</div>
+            <button id="google-btn" class="google-login">Sign in with Google</button>
+        </div>
+    </div>
+
+    <!-- EXAM INTERFACE -->
+    <div id="exam-screen" class="hidden">
+        <header>
+            <h1 id="secret-header-trigger">JAMB Simulator 2026</h1>
+            <div id="timer">Time: <span id="time-display">02:00:00</span></div>
+            <button id="logout-btn" style="background:#cc0000; padding:5px 10px; width:auto; font-size: 14px;">Logout</button>
+        </header>
+        
+        <main>
+            <div id="question-area">
+                <h3 id="subject-title">Subject: Mathematics</h3>
+                <p id="question-number">Question 1</p>
+                <p id="question-text">Loading question...</p>
+                
+                <div id="options-container"></div>
+                <p id="explanation-box" class="hidden"></p>
+            </div>
+            
+            <div id="controls">
+                <button id="btn-prev">Previous (P)</button>
+                <button id="btn-reverse">Reverse (R)</button>
+                <button id="btn-next">Next (N)</button>
+                <button id="submit-btn">Submit (S)</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- UPGRADE MODAL -->
+    <div id="upgrade-modal" class="hidden">
+        <div class="modal-content">
+            <h2>Unlock Full Access</h2>
+            <p>You've hit the 20-question limit. Upgrade to unlock all subjects for 30 days!</p>
+            <div class="payment-details">
+                <p><strong>Price:</strong> ₦1,000 / month</p>
+                <p><strong>Bank:</strong> OPay</p>
+                <p><strong>Acct No:</strong> 1234567890</p>
+                <p><strong>Name:</strong> Your Name</p>
+                <p style="font-size: 12px; margin-top: 10px;">Send this email to admin: <strong id="user-email-display"></strong></p>
+            </div>
+            <button id="whatsapp-btn">Pay & Message on WhatsApp</button>
+            <button id="close-upgrade" style="background:#555; margin-top:10px;">Close</button>
+        </div>
+    </div>
+
+    <!-- SECRET ADMIN MODAL -->
+    <div id="admin-modal" class="hidden">
+        <div class="modal-content">
+            <h2 style="color: #cc0000;">Admin Panel</h2>
+            <input type="email" id="admin-user-email" placeholder="Student's Email">
+            <button id="admin-upgrade-btn">Authorize 30 Days Premium</button>
+            <button id="close-admin" style="background:#555; margin-top:10px;">Close</button>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
