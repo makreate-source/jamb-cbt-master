@@ -4,9 +4,8 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, si
 import { getFirestore, enableIndexedDbPersistence, doc, setDoc, getDoc, onSnapshot, updateDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 import { database } from "./questions.js";
 
-// --- 1. FIREBASE CONFIGURATION ---
 const firebaseConfig = {
-  apiKey: "AIzaSyB857tx7Z-jqNOQC4w_o1T-cTQdFd11yxg",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "jamb-cbt-master.firebaseapp.com",
   projectId: "jamb-cbt-master",
   storageBucket: "jamb-cbt-master.firebasestorage.app",
@@ -18,12 +17,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Enable Offline Persistence for the Database
 enableIndexedDbPersistence(db).catch((err) => {
     console.log("Offline mode failed to initialize:", err.code);
 });
 
-// --- STATE MANAGEMENT ---
 let currentUser = null;
 let isPremium = false;
 let currentSubject = 'mathematics';
@@ -32,7 +29,6 @@ let userAnswers = {};
 let activeQuestions = [];
 let sessionUnsubscribe = null;
 
-// --- 2. AUTHENTICATION LOGIC ---
 const emailInput = document.getElementById('email-input');
 const passwordInput = document.getElementById('password-input');
 
@@ -59,7 +55,6 @@ document.getElementById('logout-btn').addEventListener('click', () => {
     signOut(auth);
 });
 
-// --- 3. SESSION MANAGEMENT & DATABASE SYNC ---
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         currentUser = user;
@@ -114,7 +109,6 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-// --- 4. EXAM ENGINE & 8-KEY CONTROLS ---
 function loadSubject(subject) {
     let allQ = database[subject] || [];
     activeQuestions = isPremium ? allQ : allQ.slice(0, 20);
@@ -181,7 +175,6 @@ document.getElementById('whatsapp-btn').onclick = () => {
     window.open(`https://wa.me/2348000000000?text=${encodeURIComponent(msg)}`, '_blank');
 };
 
-// --- 5. SECRET ADMIN PANEL ---
 let tapCount = 0;
 let tapTimeout;
 document.getElementById('secret-header-trigger').addEventListener('click', () => {
